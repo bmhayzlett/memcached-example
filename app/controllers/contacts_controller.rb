@@ -5,6 +5,12 @@ class ContactsController < ApplicationController
   # GET /contacts.json
   def index
     @contacts = Contact.all_cached
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @contacts }
+    end
+    
     @stats = Rails.cache.stats.first.last
   end
 
